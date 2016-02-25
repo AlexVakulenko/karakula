@@ -1,7 +1,6 @@
 package loops;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class CollatzSequence {
 
@@ -14,6 +13,8 @@ public class CollatzSequence {
     ArrayList<Integer> results = new ArrayList<>();
 
     scan = new Scanner(System.in);
+    
+    
     try {
       System.out.print("Starting number: ");
       n = scan.nextInt();
@@ -24,13 +25,29 @@ public class CollatzSequence {
         } else {
           n = 3 * n + 1;
         }
-
+         results.add(n);
+         
       } while (n != 1);
-
-      // String fs = "\t" + n;
+      
+   
 
     } finally {
       scan.close();
     }
+    int resultCount=results.size();
+    int biggestNumber=0;
+
+  
+    for (int i=0; i<resultCount; i++){
+        System.out.println("Result #" + i + " is "
+            + results.get(i));
+        
+        if (results.get(i) > biggestNumber) {
+			biggestNumber=results.get(i);
+		}    
+    }
+    System.out.println("You have "+ resultCount+" results");
+    System.out.println("Biggest number is "+biggestNumber);
+
   }
 }
