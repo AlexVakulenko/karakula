@@ -41,12 +41,13 @@ public class NimVersion2 {
 
     // print HashMap contains
     // System.out.println(Collections.singletonList(pMap));
+    System.out.println("A: " + pMap.get(users[0]+pileA) + " B: " + pMap.get(users[0]+pileB) 
+    		+ " C: " + pMap.get(users[0]+pileC));
 
     for (int i = 0; i < users.length; i++) {
       keyA = users[i] + pileA;
       keyB = users[i] + pileB;
       keyC = users[i] + pileC;
-      System.out.println("A: " + pMap.get(keyA) + " B: " + pMap.get(keyB) + " C: " + pMap.get(keyC));
       System.out.print(users[i] + "choose a pile:");
       pile = keyboard.next().charAt(0);
       System.out.print("How many to remove from pile " + pile);
