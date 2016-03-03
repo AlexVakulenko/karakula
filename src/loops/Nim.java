@@ -1,7 +1,5 @@
 package loops;
 
-import java.util.HashMap;
-import java.util.Map.Entry;
 import java.util.Scanner;
 
 public class Nim {
@@ -12,67 +10,48 @@ public class Nim {
 
   public static void main(String[] args) {
     // TODO Auto-generated method stub
-    int howManyPlayers;
 
-    String username;
+    String player1;
+    String player2;
+
+    int firstPlayerA = 3;
+    int firstPlayerB = 4;
+    int firstPlayerC = 5;
+
+    int secondPlayerA = 3;
+    int secondPlayerB = 4;
+    int secondPlayerC = 5;
+    int toRemove;
+
+    char target;
+    char pileA = 'A';
+    char pileB = 'B';
+    char pileC = 'C';
+
     Scanner keyboard = null;
-    char pile;
-    int remove;
     keyboard = new Scanner(System.in);
 
     // enter players quantity
-    System.out.print("How many players do you want? >>>");
-    howManyPlayers = keyboard.nextInt();
+    System.out.print("Player 1, enter your name: ");
+    player1 = keyboard.next();
 
-    PlayerNim[] units = new PlayerNim[howManyPlayers];
-    HashMap<String, Object> pMap = new HashMap<>();
+    System.out.print("Player 2, enter your name: ");
+    player2 = keyboard.next();
 
-    // fill up array for players objects
-    for (int i = 0; i < howManyPlayers; i++) {
-      System.out.print("Player " + (i + 1) + " enter your name: ");
-      username = keyboard.next();
-      units[i] = new PlayerNim();
-      pMap.put(username, units[i]);
+    System.out.println("A: " + firstPlayerA + "B: " + firstPlayerB + "C: " + firstPlayerC);
 
+    System.out.print(player1 + ", choose a pile: ");
+    target = keyboard.next().charAt(0);
+
+    if (target != 'A' | target != 'B' | target != 'C') {
+      do {
+        System.out.print(player1 + ", choose a pile. You con choose A or B or C ");
+        target = keyboard.next().charAt(0);
+      } while (target == 'A' | target == 'B' | target == 'C');
     }
-    // print players map size and
-    int checkMap = pMap.size();
-    System.out.println(checkMap);
 
-    for (Entry<String, Object> entry : pMap.entrySet()) {
-
-      String key = entry.getKey().toString();
-      PlayerNim value = (PlayerNim) entry.getValue();
-      A = value.A;
-      B = value.B;
-      C = value.C;
-      System.out.println("key, " + key + ", value A " + A + " value B " + B + " value C " + C);
-      // create player instance
-
-    }
-    do {
-
-      for (int i = 0; i < units.length; i++) {
-        System.out.print(units[i] + " choose a pile: ");
-        pile = keyboard.next().charAt(0);
-        System.out.print("How many to remove from pile " + pile);
-        remove = keyboard.nextInt();
-
-        PlayerNim currentPlayer = (PlayerNim) pMap.get(units[i]);
-        if (pile == 'A') {
-          currentPlayer.A = currentPlayer.A - remove;
-        } else if (pile == 'B') {
-          currentPlayer.B = currentPlayer.B - remove;
-        } else if (pile == 'C') {
-          currentPlayer.C = currentPlayer.C - remove;
-        }
-        A = currentPlayer.A;
-        B = currentPlayer.B;
-        C = currentPlayer.C;
-        System.out.println("A " + A + "B " + B + "C " + C);
-      }
-
-    } while (A > 0 | B > 0 | C > 0);
+    System.out.print("How many to remove from pile " + target);
+    toRemove = keyboard.nextInt();
 
   }
 }

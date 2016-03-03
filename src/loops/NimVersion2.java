@@ -20,6 +20,9 @@ public class NimVersion2 {
     String keyC;
     int remove;
     int result;
+    int piA = 1;
+    int piB = 1;
+    int piC = 1;
     keyboard = new Scanner(System.in);
 
     // enter players quantity
@@ -41,30 +44,35 @@ public class NimVersion2 {
 
     // print HashMap contains
     // System.out.println(Collections.singletonList(pMap));
-    System.out.println("A: " + pMap.get(users[0]+pileA) + " B: " + pMap.get(users[0]+pileB) 
-    		+ " C: " + pMap.get(users[0]+pileC));
+    System.out.println("A: " + pMap.get(users[0] + pileA) + " B: " + pMap.get(users[0] + pileB) + " C: " + pMap.get(users[0] + pileC));
 
-    for (int i = 0; i < users.length; i++) {
-      keyA = users[i] + pileA;
-      keyB = users[i] + pileB;
-      keyC = users[i] + pileC;
-      System.out.print(users[i] + "choose a pile:");
-      pile = keyboard.next().charAt(0);
-      System.out.print("How many to remove from pile " + pile);
-      remove = keyboard.nextInt();
+    do {
 
-      if (pile == pileA) {
-        result = pMap.get(keyA) - remove;
-        pMap.put(keyA, result);
-      } else if (pile == pileB) {
-        result = pMap.get(keyB) - remove;
-        pMap.put(keyB, result);
-      } else if (pile == pileC) {
-        result = pMap.get(keyC) - remove;
-        pMap.put(keyC, result);
+      for (int i = 0; i < users.length; i++) {
+        keyA = users[i] + pileA;
+        keyB = users[i] + pileB;
+        keyC = users[i] + pileC;
+        System.out.print(users[i] + ", choose a pile: ");
+        pile = keyboard.next().charAt(0);
+        System.out.print("How many to remove from pile " + pile);
+        remove = keyboard.nextInt();
+
+        if (pile == pileA) {
+          result = piA - remove;
+          pMap.put(keyA, result);
+        } else if (pile == pileB) {
+          result = pMap.get(keyB) - remove;
+          pMap.put(keyB, result);
+        } else if (pile == pileC) {
+          result = pMap.get(keyC) - remove;
+          pMap.put(keyC, result);
+        }
+        piA = pMap.get(keyA);
+        piB = pMap.get(keyB);
+        piC = pMap.get(keyC);
+        System.out.println("A: " + piA + " B: " + piB + " C: " + piC);
       }
-      System.out.println("A: " + pMap.get(keyA) + " B: " + pMap.get(keyB) + " C: " + pMap.get(keyC));
-    }
+    } while (piA <= 0 | piB <= 0 | piC <= 0);
   }
 
 }
